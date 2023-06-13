@@ -1,11 +1,16 @@
 import { useForm } from 'react-hook-form';
 import loginImg from '../../assets/images/secured-form.gif'
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { BsGoogle } from "react-icons/bs";
+import { BsGoogle, BsInfoCircle } from "react-icons/bs";
 import './Login.css'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const [wrongInfo, setWrongInfo] = useState("");
+
+    const navigate = useNavigate();
+
     const { signIn, signInWithGoogle } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const onSubmit = data => {
@@ -17,8 +22,19 @@ const Login = () => {
             console.log(result.user);
             // navigate(from, { replace: true });
             reset();
+            navigate('/');
         }).catch(error => {
             console.log(error.message);
+
+            const errorCode = error.code;
+
+            if (errorCode === "auth/invalid-email" || errorCode === "auth/user-not-found") {
+                setWrongInfo("The email you entered is invalid or not registered.");
+            } else if (errorCode === "auth/wrong-password") {
+                setWrongInfo("The password you entered is incorrect.");
+            } else {
+                setWrongInfo("Something went wrong. Please try again.");
+            }
         })
 
 
@@ -31,9 +47,12 @@ const Login = () => {
         signInWithGoogle().then(result => {
             console.log(result);
             // Update Profile 
+            navigate('/');
 
-        }).catch(error => {
+        }).catch((error) => {
             console.log(error.message);
+
+
         })
     }
     return (
@@ -59,12 +78,16 @@ const Login = () => {
 
                                     <input className='input input-bordered input-primary' type="password" placeholder="Password" {...register("Password", { required: true })} />
 
+                                    <p className='text-red-700 flex flex-row gap-2 items-center'>{wrongInfo ? <BsInfoCircle size={18} /> : ''}{wrongInfo}</p>
 
                                     {/* <input type="submit" /> */}
                                     {/* <input type="submit" value="Submit" /> */}
                                     <button className='btn gradient-button'>Continue</button>
 
                                 </form>
+                            </div>
+                            <div className="flex flex-col w-full border-opacity-50">
+                                <div className="divider">OR</div>
                             </div>
                             <div>
                                 <button onClick={handleGoogleSignin} className='btn gradient-button w-full my-2'><BsGoogle size={18} /> Register With Google</button>

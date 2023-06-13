@@ -1,11 +1,14 @@
 import { useForm } from 'react-hook-form';
 import './SignUp.css';
 import signupImg from '../../assets/images/secured-form.gif'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
-import { BsGoogle } from "react-icons/bs";
+import { BsGoogle, BsInfoCircle } from "react-icons/bs";
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+    const [wrongInfo, setWrongInfo] = useState("");
+    const navigate = useNavigate();
 
     const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
 
@@ -16,6 +19,24 @@ const SignUp = () => {
         const email = data.Email;
         const password = data.Password;
         const imageURL = data.Image_URL;
+
+        if (!/(?=.*[A-Z])/g.test(password)) {
+            const errorMessage = "Include an uppercase letter.";
+            setWrongInfo(errorMessage);
+            return;
+        }
+
+        if (!/(?=.*[@#$%^&+=])/g.test(password)) {
+            const errorMessage = "Include a special character.";
+            setWrongInfo(errorMessage);
+            return;
+        }
+
+        if (password.length < 6) {
+            const errorMessage = "Minimum 8 characters required.";
+            setWrongInfo(errorMessage);
+            return;
+        }
         // Add user
         createUser(email, password)
             .then(result => {
@@ -29,6 +50,7 @@ const SignUp = () => {
 
                         // navigate(from, { replace: true });
                         reset();
+                        navigate('/');
                     }).catch(error => {
                         console.log(error.message);
                     })
@@ -46,6 +68,7 @@ const SignUp = () => {
         signInWithGoogle().then(result => {
             console.log(result);
             // Update Profile 
+            navigate('/');
 
         }).catch(error => {
             console.log(error.message);
@@ -77,9 +100,14 @@ const SignUp = () => {
 
                                     <input className='input input-bordered input-primary' type="password" placeholder="Password" {...register("Password", { required: true })} />
 
+
                                     <input className='input input-bordered input-primary' type="password" placeholder="Confirm_Password" {...register("Confirm_Password", { required: true })} />
 
                                     <input className='input input-bordered input-primary' type="url" placeholder="Image_URL" {...register("Image_URL", { required: true })} />
+
+
+                                    <p className='text-red-700 flex flex-row gap-2 items-center'>{wrongInfo ? <BsInfoCircle size={18} /> : ''}{wrongInfo}</p>
+
 
 
                                     {/* <input type="submit" /> */}
@@ -87,6 +115,9 @@ const SignUp = () => {
                                     <button className='btn gradient-button'>Register With Email</button>
 
                                 </form>
+                            </div>
+                            <div className="flex flex-col w-full border-opacity-50">
+                                <div className="divider">OR</div>
                             </div>
                             <div>
                                 <button onClick={handleGoogleSignin} className='btn gradient-button w-full my-2'><BsGoogle size={18} /> Register With Google</button>
