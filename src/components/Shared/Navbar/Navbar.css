@@ -1,0 +1,123 @@
+/* rgb(220 38 38); */
+/* rgb(0 0 0); */
+/* rgb(185 28 28); */
+
+nav a.active {
+    /* color: rgb(220 38 38); */
+    /* text-decoration: underline; */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(to right, #4F46E5, #2F97FF);
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    color: rgb(71 85 105);
+    padding: 10px;
+}
+
+.navbar-logo a {
+    /* color: #fff; */
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-item {
+    margin: 0 10px;
+    font-weight: 600;
+}
+
+.navbar-item a:hover {
+    /* color: rgb(220 38 38); */
+    /* font-weight: bold; */
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(to right, #4F46E5, #2F97FF);
+}
+
+.navbar-link {
+    /* color: #fff; */
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbar-toggle {
+    display: none;
+}
+
+
+/* Button */
+.gradient-button {
+    background-image: linear-gradient(to left, #4F46E5, #2F97FF);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-image 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .gradient-button:hover {
+    /* background-image: linear-gradient(to right, #4F46E5, #2F97FF);
+  color: white; */
+  background-image: linear-gradient(to left, #2F97FF, #4F46E5);
+  }
+
+
+  
+
+.navbar-icon {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: rgb(37 99 235);
+    ;
+    margin: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        align-items: start;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        padding: 10px;
+        transition: all 0.5s ease-in-out;
+        z-index: 999;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+
+    .navbar-item {
+        margin: 10px 0;
+    }
+
+    .navbar-toggle {
+        display: block;
+        cursor: pointer;
+    }
+}
