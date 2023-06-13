@@ -4,6 +4,7 @@ import {
 import Main from "../components/Main/Main";
 import SignUp from "../Pages/SignUp/SignUp";
 import Login from "../Pages/Login/Login";
+import Error404 from "../Pages/Error404";
 
 export const router = createBrowserRouter([
     {
@@ -39,5 +40,9 @@ export const router = createBrowserRouter([
     {
         path: "/admin-dashboard",
         element: <div>admin-dashboard</div>,
+    },
+    {
+        path: "*",
+        element: <Error404 />,
     },
 ]);
