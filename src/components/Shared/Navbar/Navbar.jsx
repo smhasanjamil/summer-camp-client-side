@@ -10,7 +10,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <nav className="navbar mx-auto md:container">
+            <nav className="navbar mx-auto md:container fixed top-0 z-10">
                 <div className="navbar-logo">
                     <Link to="/"><img src={logoImg} alt="" className=' h-8 md:h-12 md:w-full' /></Link>
                 </div>
@@ -44,7 +44,7 @@ const Navbar = () => {
                     <li className="navbar-item">
                         <NavLink to="/instructor-dashboard">Dashboard</NavLink>
                     </li>
-                    
+
                     <li className="navbar-item">
                         <NavLink to="/admin-dashboard">Dashboard</NavLink>
                     </li>
@@ -54,13 +54,26 @@ const Navbar = () => {
 
                     <li className="navbar-item">
 
+                        
+
                         <span className='flex flex-col md:flex-row gap-5 items-center'>
-                            <div className="relative hidden md:block">
+                            {/* <div className="relative hidden md:block">
                                 <img src='Photo here' alt="profile picute" className='h-10 w-10 rounded-full' />
                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out">
                                     <p className="text-white text-lg font-bold">User Name</p>
                                 </div>
+                                
+                            </div> */}
+
+                            <div className="avatar online hidden md:block">
+                                <div className="w-12 rounded-full">
+                                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                                        <p className="text-white text-xs text-center">User Name</p>
+                                    </div>
+                                </div>
                             </div>
+
                             <div><button className='btn gradient-button'><Link to="/login"><span className='text-white'>Log Out</span></Link></button></div>
                         </span>
 
