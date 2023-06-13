@@ -2,7 +2,8 @@ import { useForm } from 'react-hook-form';
 import loginImg from '../../assets/images/secured-form.gif'
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-
+import { BsGoogle } from "react-icons/bs";
+import './Login.css'
 
 const Login = () => {
     const { signIn, signInWithGoogle } = useContext(AuthContext);
@@ -23,9 +24,21 @@ const Login = () => {
 
     };
     console.log(errors);
+
+    // Google Login
+    // Google Sign In
+    const handleGoogleSignin = () => {
+        signInWithGoogle().then(result => {
+            console.log(result);
+            // Update Profile 
+
+        }).catch(error => {
+            console.log(error.message);
+        })
+    }
     return (
-        <div className='px-4 md:px-4 lg:px-2 xl:px-0 mt-12'>
-            <div className="grid grid-cols-12 gap-4 items-center">
+        <div className='px-4 md:px-4 lg:px-2 xl:px-0 mt-16 bg-white'>
+            <div className="grid grid-cols-12 gap-4 items-center ">
 
 
                 <div className="col-span-12 md:col-span-6 hidden md:block">
@@ -34,7 +47,7 @@ const Login = () => {
                     </div>
                 </div>
 
-                <div className="col-span-12 md:col-span-6">
+                <div className="col-span-12 md:col-span-6 md:px-4">
 
                     <div className="card w-full bg-base-100 shadow-xl">
                         <div className="card-body">
@@ -52,6 +65,9 @@ const Login = () => {
                                     <button className='btn gradient-button'>Continue</button>
 
                                 </form>
+                            </div>
+                            <div>
+                                <button onClick={handleGoogleSignin} className='btn gradient-button w-full my-2'><BsGoogle size={18} /> Register With Google</button>
                             </div>
                         </div>
                     </div>

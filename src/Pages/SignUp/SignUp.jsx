@@ -3,10 +3,11 @@ import './SignUp.css';
 import signupImg from '../../assets/images/secured-form.gif'
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+import { BsGoogle } from "react-icons/bs";
 
 const SignUp = () => {
 
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const onSubmit = data => {
@@ -40,8 +41,19 @@ const SignUp = () => {
 
     console.log(errors);
 
+    // Google Sign In
+    const handleGoogleSignin = () => {
+        signInWithGoogle().then(result => {
+            console.log(result);
+            // Update Profile 
+
+        }).catch(error => {
+            console.log(error.message);
+        })
+    }
+
     return (
-        <div className='px-4 md:px-4 lg:px-2 xl:px-0 mt-12'>
+        <div className='px-4 md:px-4 lg:px-2 xl:px-0 mt-16 bg-white'>
             <div className="grid grid-cols-12 gap-4 items-center">
 
 
@@ -58,7 +70,6 @@ const SignUp = () => {
                             <h2 className="card-title mx-auto title-styles mb-4 text-3xl">Registration</h2>
                             <div className=''>
                                 <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
-
 
                                     <input className='input input-bordered input-primary' type="text" placeholder="Name" {...register("Name", { required: true, maxLength: 80 })} />
 
@@ -78,7 +89,7 @@ const SignUp = () => {
                                 </form>
                             </div>
                             <div>
-                                <button className='btn gradient-button w-full my-2'>Register With Google</button>
+                                <button onClick={handleGoogleSignin} className='btn gradient-button w-full my-2'><BsGoogle size={18} /> Register With Google</button>
                             </div>
                         </div>
                     </div>

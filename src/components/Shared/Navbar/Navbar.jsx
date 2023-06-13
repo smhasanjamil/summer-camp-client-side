@@ -40,32 +40,29 @@ const Navbar = () => {
                         <NavLink to="/classes">Classes</NavLink>
                     </li>
 
-                    <li className="navbar-item">
+                    {!user && <li className="navbar-item">
                         <NavLink to="/login">Login</NavLink>
-                    </li>
+                    </li>}
 
 
-                    <li className="navbar-item">
+                    {!user && <li className="navbar-item">
                         <NavLink to="/register">Register</NavLink>
-                    </li>
+                    </li>}
 
-                    <li className="navbar-item">
-                        <NavLink to="/student-dashboard">Dashboard</NavLink>
-                    </li>
-
-                    <li className="navbar-item">
+                    {user && <li className="navbar-item">
                         <NavLink to="/instructor-dashboard">Dashboard</NavLink>
-                    </li>
+                    </li>}
 
-                    <li className="navbar-item">
+                    {user &&  <li className="navbar-item">
                         <NavLink to="/admin-dashboard">Dashboard</NavLink>
-                    </li>
+                    </li>}
 
-
+                    {user && <li className="navbar-item">
+                        <NavLink to="/student-dashboard">Dashboard</NavLink>
+                    </li>}
 
 
                     <li className="navbar-item">
-
 
 
                         <span className='flex flex-col md:flex-row gap-5 items-center'>
@@ -87,7 +84,7 @@ const Navbar = () => {
                                 </div>
                             </div>
 
-                            <div><button onClick={handleLogOut} className='btn gradient-button'><Link to="/login"><span className='text-white'>Log Out</span></Link></button></div>
+                           {user && <div><button onClick={handleLogOut} className='btn gradient-button'><Link to="/login"><span className='text-white'>Log Out</span></Link></button></div>}
                         </span>
 
                     </li>

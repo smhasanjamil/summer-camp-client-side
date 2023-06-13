@@ -1,0 +1,24 @@
+.title-styles {
+    font-weight: bold;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(to right, #4F46E5, #2F97FF);
+}
+
+* Button */ .gradient-button {
+    background-image: linear-gradient(to left, #4F46E5, #2F97FF);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-image 0.3s ease;
+    font-weight: bold;
+}
+
+.gradient-button:hover {
+    /* background-image: linear-gradient(to right, #4F46E5, #2F97FF);
+  color: white; */
+    background-image: linear-gradient(to left, #2F97FF, #4F46E5);
+}
