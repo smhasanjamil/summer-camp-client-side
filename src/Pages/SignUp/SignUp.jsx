@@ -12,7 +12,10 @@ const SignUp = () => {
 
     const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm();
+
+    
+
     const onSubmit = data => {
         console.log(data)
         const name = data.Name;
@@ -37,6 +40,15 @@ const SignUp = () => {
             setWrongInfo(errorMessage);
             return;
         }
+
+        // Check if password and confirm password match
+        const confirmPassword = getValues("Confirm_Password");
+        if (password !== confirmPassword) {
+            const errorMessage = "Passwords do not match.";
+            setWrongInfo(errorMessage);
+            return;
+        }
+        
         // Add user
         createUser(email, password)
             .then(result => {
@@ -101,7 +113,7 @@ const SignUp = () => {
                                     <input className='input input-bordered input-primary' type="password" placeholder="Password" {...register("Password", { required: true })} />
 
 
-                                    <input className='input input-bordered input-primary' type="password" placeholder="Confirm_Password" {...register("Confirm_Password", { required: true })} />
+                                    <input className='input input-bordered input-primary' type="password" placeholder="Confirm Password" {...register("Confirm_Password", { required: true })} />
 
                                     <input className='input input-bordered input-primary' type="url" placeholder="Image_URL" {...register("Image_URL", { required: true })} />
 
