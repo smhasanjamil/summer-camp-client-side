@@ -1,12 +1,24 @@
 import { Link, NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './Navbar.css';
 import logoImg from '../../../assets/images/lingoz-logo.png';
+import { AuthContext } from '../../../providers/AuthProvider';
+import avatarImg from '../../../assets/images/avatar.jpg';
 
 const Navbar = () => {
 
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user);
+
     const [isOpen, setIsOpen] = useState(false);
 
+    const handleLogOut = () => {
+        logOut().then(() => {
+            console.log('Sign Out Success');
+        }).catch((error) => {
+            console.log('Sign Out error : ', error);
+        });
+    }
 
     return (
         <div>
@@ -54,7 +66,7 @@ const Navbar = () => {
 
                     <li className="navbar-item">
 
-                        
+
 
                         <span className='flex flex-col md:flex-row gap-5 items-center'>
                             {/* <div className="relative hidden md:block">
@@ -65,16 +77,17 @@ const Navbar = () => {
                                 
                             </div> */}
 
-                            <div className="avatar online hidden md:block">
+                            <div className={user ? "avatar online hidden md:block" : "avatar hidden md:block"}>
                                 <div className="w-12 rounded-full">
-                                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    {/* <img src={user?.photoURL} /> */}
+                                    <img src={user && user.photoURL ? user.photoURL : avatarImg} alt="avatar" height='30' width='30' className='rounded-full' />
                                     <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out">
-                                        <p className="text-white text-xs text-center">User Name</p>
+                                        <p className="text-white text-xs text-center">{user?.displayName}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div><button className='btn gradient-button'><Link to="/login"><span className='text-white'>Log Out</span></Link></button></div>
+                            <div><button onClick={handleLogOut} className='btn gradient-button'><Link to="/login"><span className='text-white'>Log Out</span></Link></button></div>
                         </span>
 
                     </li>
