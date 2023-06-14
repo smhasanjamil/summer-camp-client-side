@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { BsGoogle, BsInfoCircle } from "react-icons/bs";
 import './Login.css'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [wrongInfo, setWrongInfo] = useState("");
@@ -89,6 +89,8 @@ const Login = () => {
                                     <input className='input input-bordered input-primary' type="text" placeholder="Email" {...register("Email", { required: true, pattern: /^\S+@\S+$/i })} />
 
                                     <input className='input input-bordered input-primary' type="password" placeholder="Password" {...register("Password", { required: true })} />
+
+                                    <p>New User? <Link to='/register'><span className=' text-blue-700'>Register</span></Link></p>
 
                                     <p className='text-red-700 flex flex-row gap-2 items-center'>{wrongInfo ? <BsInfoCircle size={18} /> : ''}{wrongInfo}</p>
 

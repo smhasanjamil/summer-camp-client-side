@@ -4,7 +4,7 @@ import signupImg from '../../assets/images/secured-form.gif'
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { BsGoogle, BsInfoCircle } from "react-icons/bs";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
     const [wrongInfo, setWrongInfo] = useState("");
@@ -153,6 +153,8 @@ const SignUp = () => {
                                     <input className='input input-bordered input-primary' type="password" placeholder="Confirm Password" {...register("Confirm_Password", { required: true })} />
 
                                     <input className='input input-bordered input-primary' type="url" placeholder="Image_URL" {...register("Image_URL", { required: true })} />
+
+                                    <p>Alreadey have an account? <Link to='/login'><span className=' text-blue-700'>Login</span></Link></p>
 
 
                                     <p className='text-red-700 flex flex-row gap-2 items-center'>{wrongInfo ? <BsInfoCircle size={18} /> : ''}{wrongInfo}</p>

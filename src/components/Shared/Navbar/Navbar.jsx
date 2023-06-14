@@ -78,7 +78,7 @@ const Navbar = () => {
                                 
                             </div> */}
 
-                            <div className={user ? "avatar online hidden md:block" : "avatar hidden md:block"}>
+                            {user && <div className= "avatar online hidden md:block" >
                                 <div className="w-12 rounded-full">
                                     {/* <img src={user?.photoURL} /> */}
                                     <img src={user && user.photoURL ? user.photoURL : avatarImg} alt="avatar" height='30' width='30' className='rounded-full' />
@@ -86,7 +86,7 @@ const Navbar = () => {
                                         <p className="text-white text-xs text-center">{user?.displayName}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div>}
 
                            {user && <div><button onClick={handleLogOut} className='btn gradient-button'><Link to="/login"><span className='text-white'>Log Out</span></Link></button></div>}
                         </span>

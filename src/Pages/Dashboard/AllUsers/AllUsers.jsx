@@ -81,12 +81,14 @@ const AllUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td className="flex flex-row gap-2">
-                                    {user.role === 'admin' ? 'admin' :
+
+                                    {user.role === 'admin' ? 'Admin' : (user.role === 'instructor' ? 'Instructor' :
                                         <>
                                             <button onClick={() => handleInstructor(user)} className="btn btn-success btn-sm">Make Instructor</button>
                                             <button onClick={() => handleMakeAdmin(user)} className="btn btn-success btn-sm">Make Admin</button>
                                         </>
-                                    }
+                                    )}
+
 
                                 </td>
                                 <td><button onClick={() => handleDelete(user)} className="btn btn-error btn-sm">delete</button></td>

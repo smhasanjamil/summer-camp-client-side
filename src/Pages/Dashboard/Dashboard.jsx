@@ -6,7 +6,8 @@ import './Dashboard.css'
 const Dashboard = () => {
 
     // To Do: Check is admin
-    const isAdmin = true;
+    const isAdmin = false;
+    const isInstructor = false;
 
     return (
         <div>
@@ -15,41 +16,44 @@ const Dashboard = () => {
 
                 <nav className="bg-white shadow-xl w-56 h-screen">
                     <ul className="flex flex-col gap-8 p-4 mt-4">
-                        {isAdmin &&
+                    {isAdmin ? (
+                            // Admin Section
                             <>
-                                <li className="">
+                                <li>
                                     <NavLink to="/dashboard">Home</NavLink>
                                 </li>
-
-                                <li className="">
+                                <li>
                                     <NavLink to="/dashboard/allusers">Manage Users</NavLink>
                                 </li>
-
-                                <li className="">
+                                <li>
                                     <NavLink to="/dashboard/j">Classes</NavLink>
                                 </li>
                             </>
-                        }
-
-                        {!isAdmin &&
+                        ) : isInstructor ? (
+                            // Instructor Section
                             <>
-                                <li className="">
+                                <li>
                                     <NavLink to="/dashboard">Home</NavLink>
                                 </li>
-
-                                <li className="">
+                                <li>
                                     <NavLink to="/dashboard/e">Instructors</NavLink>
                                 </li>
-
-                                <li className="">
+                                <li>
                                     <NavLink to="/dashboard/j">Classes</NavLink>
                                 </li>
-
-                                <li className="">
+                                <li>
                                     <NavLink to="/dashboard/j">Classes</NavLink>
                                 </li>
                             </>
-                        }
+                        ) : (
+                            // Student Section (Default)
+                            <>
+                                <li>
+                                    <NavLink to="/dashboard">Home</NavLink>
+                                </li>
+                                {/* Add student-specific links here */}
+                            </>
+                        )}
 
                     </ul>
                 </nav>
