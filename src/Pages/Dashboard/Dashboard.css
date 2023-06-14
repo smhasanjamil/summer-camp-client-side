@@ -1,0 +1,8 @@
+nav a.hover {
+    /* color: rgb(220 38 38); */
+    /* text-decoration: underline; */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(to right, #4F46E5, #2F97FF);
+}

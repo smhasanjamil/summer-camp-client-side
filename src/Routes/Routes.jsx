@@ -5,6 +5,8 @@ import Main from "../components/Main/Main";
 import SignUp from "../Pages/SignUp/SignUp";
 import Login from "../Pages/Login/Login";
 import Error404 from "../Pages/Error404";
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -44,5 +46,19 @@ export const router = createBrowserRouter([
     {
         path: "*",
         element: <Error404 />,
+    },
+    {
+        path: "dashboard",
+        element: <Dashboard />,
+        children: [
+            {
+                path: "/dashboard/allusers",
+                element: <AllUsers />,
+            },
+            {
+                path: "/dashboard/j",
+                element: <p>Test</p>,
+            },
+        ],
     },
 ]);

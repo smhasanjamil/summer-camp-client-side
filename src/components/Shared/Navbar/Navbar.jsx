@@ -49,7 +49,7 @@ const Navbar = () => {
                         <NavLink to="/register">Register</NavLink>
                     </li>}
 
-                    {user && <li className="navbar-item">
+                    {/* {user && <li className="navbar-item">
                         <NavLink to="/instructor-dashboard">Dashboard</NavLink>
                     </li>}
 
@@ -59,6 +59,10 @@ const Navbar = () => {
 
                     {user && <li className="navbar-item">
                         <NavLink to="/student-dashboard">Dashboard</NavLink>
+                    </li>} */}
+
+                    {user && <li className="navbar-item">
+                        <NavLink to="/dashboard">Dashboard</NavLink>
                     </li>}
 
 
