@@ -17,12 +17,12 @@ const Dashboard = () => {
                     <ul className="flex flex-col gap-8 p-4 mt-4">
                         {isAdmin &&
                             <>
-                                {/* <li className="">
+                                <li className="">
                                     <NavLink to="/dashboard">Home</NavLink>
-                                </li> */}
+                                </li>
 
                                 <li className="">
-                                    <NavLink to="/dashboard/allusers">All Users</NavLink>
+                                    <NavLink to="/dashboard/allusers">Manage Users</NavLink>
                                 </li>
 
                                 <li className="">
@@ -54,7 +54,7 @@ const Dashboard = () => {
                     </ul>
                 </nav>
 
-                <div className="p-12"> <Outlet /></div>
+                <div className="p-12 w-full"> <Outlet /></div>
 
             </div>
 
