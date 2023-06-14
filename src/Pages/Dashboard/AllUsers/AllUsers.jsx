@@ -8,6 +8,7 @@ const AllUsers = () => {
         return res.json();
     })
 
+
     // Handle delete
     const handleDelete = (user) => {
         console.log('Clicked', user);
@@ -32,7 +33,32 @@ const AllUsers = () => {
                     })
                 }
             })
-    }
+    };
+
+
+    // handleInstructor
+    const handleInstructor = (user) => {
+        fetch(`https://lingoz-server-side.vercel.app/users/instructor/${user._id}`, {
+            method: 'PATCH',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is now Instructor!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+    };
+
+
+
     return (
         <div>
             <h3 className="text-3xl font-bold">Total User : {users.length}</h3>
@@ -57,7 +83,7 @@ const AllUsers = () => {
                                 <td className="flex flex-row gap-2">
                                     {user.role === 'admin' ? 'admin' :
                                         <>
-                                            <button className="btn btn-success btn-sm">Make Instructor</button>
+                                            <button onClick={() => handleInstructor(user)} className="btn btn-success btn-sm">Make Instructor</button>
                                             <button onClick={() => handleMakeAdmin(user)} className="btn btn-success btn-sm">Make Admin</button>
                                         </>
                                     }
