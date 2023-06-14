@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 
 const AllUsers = () => {
@@ -8,14 +9,35 @@ const AllUsers = () => {
     })
 
     // Handle delete
-    const handleDelete = () => {
-        console.log('Clicked');
+    const handleDelete = (user) => {
+        console.log('Clicked', user);
+    }
+
+    // Handle MAke Admin
+    const handleMakeAdmin = (user) => {
+        fetch(`https://lingoz-server-side.vercel.app/users/admin/${user._id}`, {
+            method: 'PATCH',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is now Admin!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
     }
     return (
         <div>
             <h3 className="text-3xl font-bold">Total User : {users.length}</h3>
             <div className="overflow-x-auto w-full">
-                <table className="table table-zebra">
+                <table className="table">
                     {/* head */}
                     <thead>
                         <tr>
@@ -33,10 +55,15 @@ const AllUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td className="flex flex-row gap-2">
-                                    <button className="btn btn-primary btn-sm">Make Instructor</button>
-                                    <button className="btn btn-primary btn-sm">Make Admin</button>
+                                    {user.role === 'admin' ? 'admin' :
+                                        <>
+                                            <button className="btn btn-success btn-sm">Make Instructor</button>
+                                            <button onClick={() => handleMakeAdmin(user)} className="btn btn-success btn-sm">Make Admin</button>
+                                        </>
+                                    }
+
                                 </td>
-                                <td><button onClick={handleDelete} className="btn btn-error btn-sm">delete</button></td>
+                                <td><button onClick={() => handleDelete(user)} className="btn btn-error btn-sm">delete</button></td>
                             </tr>
                         ))}
 
