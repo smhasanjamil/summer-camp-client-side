@@ -97,8 +97,26 @@ const SignUp = () => {
     // Google Sign In
     const handleGoogleSignin = () => {
         signInWithGoogle().then(result => {
-            console.log(result);
-            // Update Profile 
+            const loggedUser = result.user;
+            // Save user to db
+            const saveUser = { name: loggedUser.displayName, email: loggedUser.email };
+            fetch('https://lingoz-server-side.vercel.app/users', {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(saveUser)
+            })
+                .then(res => res.json())
+                .then(() => {
+                    
+                        navigate('/');
+                    
+                })
+
+
+
+
             navigate('/');
 
         }).catch(error => {
