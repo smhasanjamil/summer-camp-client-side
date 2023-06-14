@@ -14,7 +14,7 @@ const SignUp = () => {
 
     const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm();
 
-    
+
 
     const onSubmit = data => {
         console.log(data)
@@ -48,11 +48,13 @@ const SignUp = () => {
             setWrongInfo(errorMessage);
             return;
         }
-        
+
         // Add user
         createUser(email, password)
             .then(result => {
-                console.log(result);
+                const loggedUser = result.user;
+                console.log(loggedUser);
+
                 // Update Profile 
                 updateUserProfile(name, imageURL)
                     .then(() => {
@@ -61,8 +63,25 @@ const SignUp = () => {
                         // saveUser(result.user);
 
                         // navigate(from, { replace: true });
-                        reset();
-                        navigate('/');
+
+                        // Save user to database
+                        const saveUser = { name: data.Name, email: data.Email };
+                        fetch('https://lingoz-server-side.vercel.app/users', {
+                            method: 'POST',
+                            headers: {
+                                "content-type": "application/json"
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset();
+                                    navigate('/');
+                                }
+                            })
+
+
                     }).catch(error => {
                         console.log(error.message);
                     })
