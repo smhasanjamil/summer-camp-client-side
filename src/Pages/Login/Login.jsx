@@ -47,7 +47,7 @@ const Login = () => {
         signInWithGoogle().then(result => {
             const loggedUser = result.user;
             // Save user to db
-            const saveUser = { name: loggedUser.displayName, email: loggedUser.email };
+            const saveUser = { name: loggedUser.displayName, email: loggedUser.email, photoURL: loggedUser.photoURL };
             fetch('https://lingoz-server-side.vercel.app/users', {
                 method: 'POST',
                 headers: {
@@ -59,7 +59,7 @@ const Login = () => {
                 .then(() => {
                     navigate('/');
                 })
-            
+
 
         }).catch((error) => {
             console.log(error.message);

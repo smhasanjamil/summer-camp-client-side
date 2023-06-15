@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, } from 'firebase/auth';
 import { app } from '../firebase/firebase.config'
-import { getRole } from '../Api/Api';
+// import { getRole } from '../Api/Api';
 
 export const AuthContext = createContext(null)
 
@@ -13,14 +13,14 @@ const AuthProvider = ({ children }) => {
     // const [loading, setLoading] = useState(true)
 
     // User Role
-    const [role, setRole] = useState(null);
+    // const [role, setRole] = useState(null);
 
-    useEffect(() => {
-        if (user) {
-            getRole(user.email)
-                .then(data => setRole(data))
-        }
-    }, [user]);
+    // useEffect(() => {
+    //     if (user) {
+    //         getRole(user.email)
+    //             .then(data => setRole(data))
+    //     }
+    // }, [user]);
 
 
     //create new user
@@ -68,8 +68,8 @@ const AuthProvider = ({ children }) => {
         signInWithGoogle,
         logOut,
         updateUserProfile,
-        role,
-        setRole,
+        // role,
+        // setRole,
     }
 
     return (

@@ -8,6 +8,9 @@ import Error404 from "../Pages/Error404";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import PrivateRoute from "./PrivateRoute";
+import Home from "../components/Home/Home";
+import Instructors from "../components/Instructors/Instructors";
+import AddClasses from "../Pages/Dashboard/Classes/AddClasses";
 
 export const router = createBrowserRouter([
     {
@@ -15,8 +18,12 @@ export const router = createBrowserRouter([
         element: <Main />,
         children: [
             {
+                path: "/",
+                element: <Home />,
+            },
+            {
                 path: "/instructors",
-                element: <p>instructors</p>,
+                element: <Instructors />,
             },
             {
                 path: "/classes",
@@ -44,6 +51,8 @@ export const router = createBrowserRouter([
     //     path: "/admin-dashboard",
     //     element: <div>admin-dashboard</div>,
     // },
+
+
     {
         path: "*",
         element: <Error404 />,
@@ -56,6 +65,12 @@ export const router = createBrowserRouter([
                 path: "/dashboard/allusers",
                 element: <AllUsers />,
             },
+            {
+                path: "/dashboard/add-classes",
+                element: <AddClasses />,
+            },
         ],
     },
+
+
 ]);
