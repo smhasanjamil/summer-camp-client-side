@@ -32,33 +32,29 @@ export const router = createBrowserRouter([
             },
         ],
     },
-    {
-        path: "/student-dashboard",
-        element: <div>student-dashboard</div>,
-    },
-    {
-        path: "/instructor-dashboard",
-        element: <div>instructor-dashboard</div>,
-    },
-    {
-        path: "/admin-dashboard",
-        element: <div>admin-dashboard</div>,
-    },
+    // {
+    //     path: "/student-dashboard",
+    //     element: <div>student-dashboard</div>,
+    // },
+    // {
+    //     path: "/instructor-dashboard",
+    //     element: <div>instructor-dashboard</div>,
+    // },
+    // {
+    //     path: "/admin-dashboard",
+    //     element: <div>admin-dashboard</div>,
+    // },
     {
         path: "*",
         element: <Error404 />,
     },
     {
-        path: "dashboard",
+        path: "/dashboard",
         element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
             {
                 path: "/dashboard/allusers",
                 element: <AllUsers />,
-            },
-            {
-                path: "/dashboard/j",
-                element: <p>Test</p>,
             },
         ],
     },

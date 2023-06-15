@@ -1,12 +1,23 @@
 import { NavLink, Outlet } from "react-router-dom";
 import './Dashboard.css'
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 
 const Dashboard = () => {
 
+    const { role } = useContext(AuthContext);
+
+
+
+console.log(role);
+
+
+
+
     // To Do: Check is admin
-    const isAdmin = false;
+    const isAdmin = true;
     const isInstructor = false;
 
     return (
@@ -16,7 +27,7 @@ const Dashboard = () => {
 
                 <nav className="bg-white shadow-xl w-56 h-screen">
                     <ul className="flex flex-col gap-8 p-4 mt-4">
-                    {isAdmin ? (
+                        {isAdmin ? (
                             // Admin Section
                             <>
                                 <li>
@@ -25,24 +36,12 @@ const Dashboard = () => {
                                 <li>
                                     <NavLink to="/dashboard/allusers">Manage Users</NavLink>
                                 </li>
-                                <li>
-                                    <NavLink to="/dashboard/j">Classes</NavLink>
-                                </li>
                             </>
                         ) : isInstructor ? (
                             // Instructor Section
                             <>
                                 <li>
                                     <NavLink to="/dashboard">Home</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/e">Instructors</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/j">Classes</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/j">Classes</NavLink>
                                 </li>
                             </>
                         ) : (
