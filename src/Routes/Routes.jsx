@@ -18,6 +18,7 @@ import ClassesCart from "../Pages/Dashboard/Cart/ClassesCart";
 import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import Footer from "../components/Footer/Footer";
+import UpcommingCourse from "../components/Home/UpcommingCourse";
 
 export const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <SignUp />,
+            },
+            {
+                path: "/upcomming-course",
+                element: <UpcommingCourse />,
             },
             {
                 path: "/footer",
