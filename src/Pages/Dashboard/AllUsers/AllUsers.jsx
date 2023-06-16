@@ -10,9 +10,9 @@ const AllUsers = () => {
 
 
     // Handle delete
-    const handleDelete = (user) => {
-        console.log('Clicked', user);
-    }
+    // const handleDelete = (user) => {
+    //     console.log('Clicked', user);
+    // }
 
     // Handle MAke Admin
     const handleMakeAdmin = (user) => {
@@ -71,7 +71,7 @@ const AllUsers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Action</th>
+                            {/* <th>Action</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -91,7 +91,7 @@ const AllUsers = () => {
 
 
                                 </td>
-                                <td><button onClick={() => handleDelete(user)} className="btn btn-error btn-sm">delete</button></td>
+                                {/* <td><button onClick={() => handleDelete(user)} className="btn btn-error btn-sm">delete</button></td> */}
                             </tr>
                         ))}
 
