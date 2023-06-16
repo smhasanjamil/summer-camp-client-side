@@ -12,6 +12,8 @@ import Home from "../components/Home/Home";
 import Instructors from "../components/Instructors/Instructors";
 import AddClasses from "../Pages/Dashboard/Classes/AddClasses";
 import ManageClasses from "../Pages/Dashboard/Classes/ManageClasses";
+import FeedBack from "../Pages/Dashboard/Classes/FeedBack";
+import Classes from "../components/Home/Classes/Classes";
 
 export const router = createBrowserRouter([
     {
@@ -25,6 +27,10 @@ export const router = createBrowserRouter([
             {
                 path: "/instructors",
                 element: <Instructors />,
+            },
+            {
+                path: "/classes",
+                element: <Classes />,
             },
             {
                 path: "/classes",
@@ -73,6 +79,11 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard/add-classes",
                 element: <AddClasses />,
+
+            },
+            {
+                path: "/dashboard/feedback",
+                element: <FeedBack />,
             },
         ],
     },

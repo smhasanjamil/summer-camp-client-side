@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 const ManageClasses = () => {
@@ -11,9 +12,50 @@ const ManageClasses = () => {
 
     // console.log(classes);
 
+    // Handle Feedback
+    // const handleFeedback = () => {
+    // newClass.preventDefault();
+    // console.log('Clicked');
+    // console.log(newClass);
+    // fetch(`https://lingoz-server-side.vercel.app/classes/status/pending/${newClass._id}`, {
+    //     method: 'PATCH'
+    // })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log(data);
+    //         if (data.modifiedCount) {
+    //             refetch();
+    //             Swal.fire({
+    //                 position: 'top-end',
+    //                 icon: 'success',
+    //                 title: `${newClass.className} is Pending!`,
+    //                 showConfirmButton: false,
+    //                 timer: 1500
+    //             })
+    //         }
+    //     })
+    // }
+
     // Handle Pending
     const handlePending = (newClass) => {
-        console.log(newClass);
+        // console.log(newClass);
+        fetch(`https://lingoz-server-side.vercel.app/classes/status/pending/${newClass._id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${newClass.className} is Pending!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
     }
 
 
@@ -72,11 +114,12 @@ const ManageClasses = () => {
                                 <th>#</th>
                                 <th>Class Image</th>
                                 <th>Class name</th>
-                                <th>Instructor name</th>
+                                <th>Instructor</th>
                                 <th>Instructor email</th>
                                 <th>Available seats</th>
                                 <th>Price</th>
                                 <th>Status</th>
+                                <th>Feedback</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,12 +156,27 @@ const ManageClasses = () => {
                                     <td>
                                         <div className="flex flex-row gap-2">
 
-                                            <button onClick={() => handlePending(newClass)} className={`btn ${newClass.status === 'pending' ? 'btn-disabled' : 'btn-primary'}`} disabled={newClass.status === 'pending'}>Pending</button>
+                                            <button onClick={() => handlePending(newClass)} className={`btn btn-sm ${newClass.status === 'pending' ? 'btn-disabled' : 'btn-primary'}`} disabled={newClass.status === 'pending'}>Pending</button>
 
-                                            <button onClick={() => handleApprove(newClass)} className={`btn ${newClass.status === 'approved' ? 'btn-disabled' : 'btn-primary'}`} disabled={newClass.status === 'approved'}>Approve</button>
+                                            <button onClick={() => handleApprove(newClass)} className={`btn btn-sm ${newClass.status === 'approved' ? 'btn-disabled' : 'btn-primary'}`} disabled={newClass.status === 'approved'}>Approve</button>
 
-                                            <button onClick={() => handleDeny(newClass)} className={`btn ${newClass.status === 'denied' ? 'btn-disabled' : 'btn-primary'}`} disabled={newClass.status === 'denied'}>Deny</button>
+                                            <button onClick={() => handleDeny(newClass)} className={`btn btn-sm ${newClass.status === 'denied' ? 'btn-disabled' : 'btn-primary'}`} disabled={newClass.status === 'denied'}>Deny</button>
                                         </div>
+                                    </td>
+                                    <td>
+
+
+                                        {/* <button onClick={() => {
+                                            handleFeedback(newClass);
+                                            // window.my_modal_1.showModal();
+                                            <FeedBack handleFeedback={handleFeedback} />
+                                        }} className="btn btn-primary btn-sm">feedback</button> */}
+
+                                        <button onClick={() => handleDeny(newClass._id)} className="btn btn-primary btn-sm"><Link to={`/dashboard/feedback`}>feedback</Link>
+                                        </button>
+                                        {/* <button onClick={() => handleDeny(newClass._id)} className="btn btn-primary btn-sm"><Link to={`/dashboard/feedback/${newClass._id}`}>feedback</Link>
+                                        </button> */}
+
                                     </td>
 
 
@@ -136,6 +194,9 @@ const ManageClasses = () => {
                 </div>
 
             </div>
+
+
+
 
         </div >
     );
