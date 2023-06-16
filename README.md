@@ -19,7 +19,7 @@ Lingoz is a language learning website that helps you learn new languages quickly
 **Client:** React, TailwindCSS, Tanstack, Stripe Node etc
 
 
-## Authors
+## Live Site
 
 - [Live Site](https://lingoz-21b37.web.app/)
 
