@@ -1,7 +1,56 @@
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import useCart from "../../../hooks/useCart";
 
 
 const SingleClass = ({ newClasses }) => {
-    console.log(newClasses);
+    const { _id, availableSeat, className, email, image, instructorName, price, status } = newClasses;
+    const [, refetch] = useCart();
+    const navigate = useNavigate();
+    // console.log(newClasses);
+    const { user } = useContext(AuthContext);
+    // console.log(user);
+
+    // Handle add to cart
+    const handleAddToCart = (newClasses) => {
+        console.log(newClasses);
+        if (user && user.email) {
+            const selectedItem = { classId: _id, className, price, email: user.email, image };
+            fetch('https://lingoz-server-side.vercel.app/carts', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(selectedItem)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    refetch();
+                    if (data.insertedId) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Class Added to the cart!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
+        } else {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'Warning',
+                title: 'Please Log in to select courses',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            navigate('/login');
+        }
+    }
+
+
     return (
         <div>
 
@@ -16,7 +65,7 @@ const SingleClass = ({ newClasses }) => {
                     <p>Price : ${newClasses.price}</p>
                     <p>Email : {newClasses.email}</p>
                     <div className="card-actions">
-                        <button className="btn gradient-button">Select Course</button>
+                        <button onClick={() => handleAddToCart(newClasses)} className="btn gradient-button">Select Course</button>
                     </div>
                 </div>
             </div>

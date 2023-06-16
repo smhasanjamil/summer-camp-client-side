@@ -4,11 +4,15 @@ import './Navbar.css';
 import logoImg from '../../../assets/images/lingoz-logo.png';
 import { AuthContext } from '../../../providers/AuthProvider';
 import avatarImg from '../../../assets/images/avatar.jpg';
+import useCart from '../../../hooks/useCart';
 
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
     // console.log(user);
+
+    const [cart] = useCart();
+    console.log(cart.length);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -61,6 +65,11 @@ const Navbar = () => {
                         <NavLink to="/student-dashboard">Dashboard</NavLink>
                     </li>} */}
 
+                    {user && <button className="btn">
+                        Cart
+                        <div className="badge badge-secondary">{cart?.length || 0}</div>
+                    </button>}
+
                     {user && <li className="navbar-item">
                         <NavLink to="/dashboard">Dashboard</NavLink>
                     </li>}
@@ -78,7 +87,7 @@ const Navbar = () => {
                                 
                             </div> */}
 
-                            {user && <div className= "avatar online hidden md:block" >
+                            {user && <div className="avatar online hidden md:block" >
                                 <div className="w-12 rounded-full">
                                     {/* <img src={user?.photoURL} /> */}
                                     <img src={user && user.photoURL ? user.photoURL : avatarImg} alt="avatar" height='30' width='30' className='rounded-full' />
@@ -88,7 +97,7 @@ const Navbar = () => {
                                 </div>
                             </div>}
 
-                           {user && <div><button onClick={handleLogOut} className='btn gradient-button'><Link to="/login"><span className='text-white'>Log Out</span></Link></button></div>}
+                            {user && <div><button onClick={handleLogOut} className='btn gradient-button'><Link to="/login"><span className='text-white'>Log Out</span></Link></button></div>}
                         </span>
 
                     </li>
