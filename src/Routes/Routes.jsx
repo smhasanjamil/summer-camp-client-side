@@ -14,6 +14,8 @@ import AddClasses from "../Pages/Dashboard/Classes/AddClasses";
 import ManageClasses from "../Pages/Dashboard/Classes/ManageClasses";
 import FeedBack from "../Pages/Dashboard/Classes/FeedBack";
 import Classes from "../components/Home/Classes/Classes";
+import ClassesCart from "../Pages/Dashboard/Cart/ClassesCart";
+import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 
 export const router = createBrowserRouter([
     {
@@ -84,6 +86,14 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard/feedback",
                 element: <FeedBack />,
+            },
+            {
+                path: "/dashboard/classesCart",
+                element: <ClassesCart />,
+            },
+            {
+                path: "/dashboard/payment-history",
+                element: <PaymentHistory />,
             },
         ],
     },

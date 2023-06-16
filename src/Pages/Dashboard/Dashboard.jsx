@@ -151,6 +151,13 @@ const Dashboard = () => {
                                 <li>
                                     <NavLink to="/">Return Home</NavLink>
                                 </li>
+
+                                <li>
+                                    <NavLink to="/dashboard/classesCart">My Cart</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/dashboard/payment-history">Payment History</NavLink>
+                                </li>
                                 {/* Add student-specific links here */}
                                 <button onClick={handleLogOut} className='btn btn-neutral text-white'><Link to="/login"><span className='text-white'>Log Out</span></Link></button>
                             </>
