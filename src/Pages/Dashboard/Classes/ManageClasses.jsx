@@ -40,7 +40,23 @@ const ManageClasses = () => {
 
     // Handle Deny
     const handleDeny = (newClass) => {
-        console.log(newClass);
+        fetch(`https://lingoz-server-side.vercel.app/classes/status/denied/${newClass._id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${newClass.className} is Denied!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
     }
 
     return (
