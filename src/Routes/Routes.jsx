@@ -16,6 +16,8 @@ import FeedBack from "../Pages/Dashboard/Classes/FeedBack";
 import Classes from "../components/Home/Classes/Classes";
 import ClassesCart from "../Pages/Dashboard/Cart/ClassesCart";
 import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import Footer from "../components/Footer/Footer";
 
 export const router = createBrowserRouter([
     {
@@ -45,6 +47,10 @@ export const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <SignUp />,
+            },
+            {
+                path: "/footer",
+                element: <Footer />,
             },
         ],
     },
@@ -94,6 +100,10 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard/payment-history",
                 element: <PaymentHistory />,
+            },
+            {
+                path: "/dashboard/payment",
+                element: <Payment />,
             },
         ],
     },

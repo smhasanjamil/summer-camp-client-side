@@ -7,6 +7,7 @@ const Home = () => {
         <div className="px-4 md:px-4 lg:px-2 xl:px-0 mt-16">
             <Instructors />
             <Classes />
+        
         </div>
     );
 };

@@ -156,6 +156,9 @@ const Dashboard = () => {
                                     <NavLink to="/dashboard/classesCart">My Cart</NavLink>
                                 </li>
                                 <li>
+                                    <NavLink to="/dashboard/payment">Payment</NavLink>
+                                </li>
+                                <li>
                                     <NavLink to="/dashboard/payment-history">Payment History</NavLink>
                                 </li>
                                 {/* Add student-specific links here */}

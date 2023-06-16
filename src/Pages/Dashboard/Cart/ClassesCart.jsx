@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import useCart from "../../../hooks/useCart";
+import { Link } from "react-router-dom";
 
 
 const ClassesCart = () => {
@@ -46,7 +47,7 @@ const ClassesCart = () => {
                         <h3 className=" text-2xl font-bold">Total Selected class : {cart.length}</h3>
                         <h3 className=" text-2xl font-bold">Total Price : ${priceSum}</h3>
                         <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Pay Now</button>
+                            <button className="btn btn-primary"><Link to='/dashboard/payment'>Pay Now</Link></button>
                         </div>
                     </div>
 
